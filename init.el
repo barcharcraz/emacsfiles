@@ -54,12 +54,14 @@
 (use-package esup)
 (use-package projectile)
 (use-package treemacs
-  :chords ("\\\\" . treemacs-toggle))
+  :chords ("\\\\" . treemacs-toggle)) ; we like double backslash to toggle the tree
+(use-package treemacs-evil)
+(use-package treemacs-projectile)
+(use-package ace-window
+  :chords ("pp" . ace-window))
 (use-package dashboard
   :config (dashboard-setup-startup-hook))
 (use-package all-the-icons)
-(use-package powerline)
-(use-package spaceline)
-(use-package spaceline-all-the-icons
-  :after spaceline
-  :config (spaceline-all-the-icons-theme))
+
+(key-chord-define-global "kk" 'kill-buffer)
+(key-chord-define-global "jj" 'switch-to-buffer)
