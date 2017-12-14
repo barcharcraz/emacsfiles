@@ -1,40 +1,48 @@
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
+(setq use-package-always-ensure t)
+(use-package no-littering)
+(use-package evil
+  :config (evil-mode 1))
 
-(require 'no-littering nil 'noerror)
+(use-package helm
+  :bind ("M-x" . helm-M-x)
+  :config (helm-mode 1))
 
-(when (require 'evil nil 'noerror)
-  (evil-mode 1))
+(use-package helm-descbinds
+  :config (helm-descbinds-mode))
 
-(when (require 'which-key nil 'noerror)
-  (which-key-mode))
-
-(when (require 'helm nil 'noerror)
-  (helm-mode 1)
-  (global-set-key (kbd "M-x") 'helm-M-x))
-
-(when (require 'helm-descbinds nil 'noerror)
-  (helm-descbinds-mode))
-
-(when (require 'company nil 'noerror)
+(use-package company
+  :config
   (global-company-mode)
   (company-tng-configure-default))
+(use-package helm-company
+  :bind (:map company-mode-map
+	 ("S-SPC" . helm-company)
+	 :map company-active-map
+	 ("S-SPC" . helm-company)))
 
-(when (require 'helm-company nil 'noerror)
-  (define-key company-mode-map (kbd "S-SPC") 'helm-company)
-  (define-key company-active-map (kbd "S-SPC") 'helm-company))
-
-(when (require 'dashboard nil 'noerror)
-  (dashboard-setup-startup-hook))
-
-(when (require 'powerline nil 'noerror)
-  (powerline-evil-center-color-theme))
-
+(use-package dashboard
+  :config (dashboard-setup-startup-hook))
+(use-package all-the-icons)
+(use-package powerline)
+(use-package spaceline)
+(use-package spaceline-all-the-icons
+  :after spaceline
+  :config (spaceline-all-the-icons-theme))
