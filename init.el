@@ -15,6 +15,10 @@
 (when (require 'which-key nil 'noerror)
   (which-key-mode))
 
+(when (require 'helm nil 'noerror)
+  (helm-mode 1)
+  (global-set-key (kbd "M-x") 'helm-M-x))
+
 (when (require 'helm-descbinds nil 'noerror)
   (helm-descbinds-mode))
 
@@ -22,5 +26,13 @@
   (global-company-mode)
   (company-tng-configure-default))
 
+(when (require 'helm-company nil 'noerror)
+  (define-key company-mode-map (kbd "S-SPC") 'helm-company)
+  (define-key company-active-map (kbd "S-SPC") 'helm-company))
 
+(when (require 'dashboard nil 'noerror)
+  (dashboard-setup-startup-hook))
+
+(when (require 'powerline nil 'noerror)
+  (powerline-evil-center-color-theme))
 
