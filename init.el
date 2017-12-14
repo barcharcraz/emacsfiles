@@ -9,6 +9,8 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(require 'no-littering nil 'noerror)
+
 (when (require 'evil nil 'noerror)
   (evil-mode 1))
 
