@@ -24,6 +24,10 @@
 (use-package no-littering)
 (use-package use-package-chords
   :config (key-chord-mode 1))
+(use-package sublimity
+  :config 
+  (require 'sublimity-scroll)
+  (sublimity-mode t))
 (use-package evil
   :config (evil-mode 1))
 
@@ -39,7 +43,12 @@
 (use-package company
   :config
   (global-company-mode)
-  (company-tng-configure-default))
+  (company-tng-configure-default)
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2))
+(use-package company-irony
+  :after company
+  :config (add-to-list 'company-backends 'company-irony))
 (use-package helm-company
   :bind (:map company-mode-map
 	 ("S-SPC" . helm-company)
@@ -47,7 +56,10 @@
 	 ("S-SPC" . helm-company)))
 (use-package flycheck)
 (use-package meson-mode)
-(use-package irony)
+(use-package irony
+  :hook ((c++-mode . irony-mode)
+	 (c-mode . irony-mode)
+	 (irony-mode . irony-cdb-autosetup-compile-options)))
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
 (use-package paradox)
@@ -72,5 +84,6 @@
   (spaceline-spacemacs-theme)
   (spaceline-helm-mode))
 (use-package tabbar-ruler)
-(key-chord-define-global "kk" 'kill-buffer)
-(key-chord-define-global "jj" 'switch-to-buffer)
+
+(key-chord-define-global ";k" 'kill-buffer)
+(key-chord-define-global ";j" 'switch-to-buffer)
