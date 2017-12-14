@@ -66,7 +66,10 @@
 (use-package esup)
 (use-package projectile)
 (use-package treemacs
-  :chords ("\\\\" . treemacs-toggle)) ; we like double backslash to toggle the tree
+  :chords
+  ("\\]" . treemacs-toggle)
+  ("\\\\" . treemacs))
+
 (use-package treemacs-evil)
 (use-package treemacs-projectile)
 (use-package magit)
@@ -74,16 +77,10 @@
   :chords ("pp" . ace-window))
 (use-package dashboard
   :config (dashboard-setup-startup-hook))
-(use-package all-the-icons)
 (use-package mode-icons
   :config (mode-icons-mode))
-(use-package powerline)
-(use-package spaceline-config
-  :ensure spaceline
-  :config
-  (spaceline-spacemacs-theme)
-  (spaceline-helm-mode))
 (use-package tabbar-ruler)
-
+(use-package telephone-line
+  :config (telephone-line-mode t))
 (key-chord-define-global ";k" 'kill-buffer)
 (key-chord-define-global ";j" 'switch-to-buffer)
