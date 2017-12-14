@@ -9,6 +9,18 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(require 'evil)
-(evil-mode 1)
+(when (require 'evil nil 'noerror)
+  (evil-mode 1))
+
+(when (require 'which-key nil 'noerror)
+  (which-key-mode))
+
+(when (require 'helm-descbinds nil 'noerror)
+  (helm-descbinds-mode))
+
+(when (require 'company nil 'noerror)
+  (global-company-mode)
+  (company-tng-configure-default))
+
+
 
