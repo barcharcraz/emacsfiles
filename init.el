@@ -57,11 +57,20 @@
   :chords ("\\\\" . treemacs-toggle)) ; we like double backslash to toggle the tree
 (use-package treemacs-evil)
 (use-package treemacs-projectile)
+(use-package magit)
 (use-package ace-window
   :chords ("pp" . ace-window))
 (use-package dashboard
   :config (dashboard-setup-startup-hook))
 (use-package all-the-icons)
-
+(use-package mode-icons
+  :config (mode-icons-mode))
+(use-package powerline)
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-spacemacs-theme)
+  (spaceline-helm-mode))
+(use-package tabbar-ruler)
 (key-chord-define-global "kk" 'kill-buffer)
 (key-chord-define-global "jj" 'switch-to-buffer)
