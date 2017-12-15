@@ -24,12 +24,11 @@
 (use-package no-littering)
 (use-package use-package-chords
   :config (key-chord-mode 1))
-(use-package sublimity
-  :config 
-  (require 'sublimity-scroll)
-  (sublimity-mode t))
 (use-package evil
   :config (evil-mode 1))
+(use-package evil-mc
+  :config
+  (global-evil-mc-mode 1))
 
 (use-package helm
   :bind ("M-x" . helm-M-x)
@@ -81,6 +80,8 @@
   :config (mode-icons-mode))
 (use-package tabbar-ruler)
 (use-package telephone-line
-  :config (telephone-line-mode t))
+  :config
+  (require 'telephone-line-config)
+  (telephone-line-evil-config))
 (key-chord-define-global ";k" 'kill-buffer)
 (key-chord-define-global ";j" 'switch-to-buffer)
