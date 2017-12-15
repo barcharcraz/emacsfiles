@@ -1,3 +1,11 @@
+
+;; do this first so it's not wierd
+;; when the gui elements disappear
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -45,14 +53,23 @@
   (company-tng-configure-default)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
+(use-package company-c-headers
+  :config (add-to-list 'company-backends 'company-c-headers))
 (use-package company-irony
   :after company
   :config (add-to-list 'company-backends 'company-irony))
+(use-package company-quickhelp
+  :after company
+  :config (company-quickhelp-mode 1))
 (use-package helm-company
   :bind (:map company-mode-map
 	 ("S-SPC" . helm-company)
 	 :map company-active-map
 	 ("S-SPC" . helm-company)))
+(use-package company-math
+  :config
+  (add-to-list 'company-backends 'company-math-symbols-unicode)
+  (add-to-list 'company-backends 'company-math-symbols-latex))
 (use-package flycheck)
 (use-package meson-mode)
 (use-package irony
@@ -83,5 +100,14 @@
   :config
   (require 'telephone-line-config)
   (telephone-line-evil-config))
+(use-package systemd)
+(use-package helm-systemd)
+(use-package flx)
+(use-package helm-flx
+  :config (helm-flx-mode +1))
+(use-package company-flx
+  :config (company-flx-mode +1))
+
 (key-chord-define-global ";k" 'kill-buffer)
 (key-chord-define-global ";j" 'switch-to-buffer)
+
