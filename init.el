@@ -52,14 +52,14 @@
   (company-tng-configure-default)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
+(use-package company-c-headers
+  :config (add-to-list 'company-backends 'company-c-headers))
 (use-package company-irony
   :after company
   :config (add-to-list 'company-backends 'company-irony))
 (use-package company-irony-c-headers
   :after company
   :config (add-to-list 'company-backends 'company-irony-c-headers))
-(use-package company-c-headers
-  :config (add-to-list 'company-backends 'company-c-headers))
 (use-package company-quickhelp
   :after company
   :config (company-quickhelp-mode 1))
