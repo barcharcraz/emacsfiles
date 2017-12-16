@@ -5,7 +5,6 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
-
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
@@ -53,11 +52,14 @@
   (company-tng-configure-default)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
-(use-package company-c-headers
-  :config (add-to-list 'company-backends 'company-c-headers))
 (use-package company-irony
   :after company
   :config (add-to-list 'company-backends 'company-irony))
+(use-package company-irony-c-headers
+  :after company
+  :config (add-to-list 'company-backends 'company-irony-c-headers))
+(use-package company-c-headers
+  :config (add-to-list 'company-backends 'company-c-headers))
 (use-package company-quickhelp
   :after company
   :config (company-quickhelp-mode 1))
@@ -107,6 +109,11 @@
   :config (helm-flx-mode +1))
 (use-package company-flx
   :config (company-flx-mode +1))
+(use-package doom-themes
+  :config
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
+
 
 (key-chord-define-global ";k" 'kill-buffer)
 (key-chord-define-global ";j" 'switch-to-buffer)
