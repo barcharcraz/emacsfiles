@@ -31,6 +31,10 @@
 (use-package no-littering)
 (use-package use-package-chords
   :config (key-chord-mode 1))
+(use-package rainbow-delimiters
+  :hook
+  (c-mode . rainbow-delimiters-mode)
+  (c++-mode . rainbow-delimiters-mode))
 (use-package evil
   :config (evil-mode 1))
 (use-package evil-mc
