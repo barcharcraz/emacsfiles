@@ -71,12 +71,15 @@
   :bind (:map company-mode-map
 	 ("S-SPC" . helm-company)
 	 :map company-active-map
-	 ("S-SPC" . helm-company)))
+	 ("S-SPC" . helm-company))i)
 (use-package company-math
   :config
   (add-to-list 'company-backends 'company-math-symbols-unicode)
   (add-to-list 'company-backends 'company-math-symbols-latex))
-(use-package flycheck)
+(use-package flycheck
+  :config (global-flycheck-mode))
+(use-package flycheck-irony
+  :hook (flycheck-mode . flycheck-irony-setup))
 (use-package meson-mode)
 (use-package irony
   :hook ((c++-mode . irony-mode)
@@ -84,6 +87,7 @@
 	 (irony-mode . irony-cdb-autosetup-compile-options)))
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
+(use-package glsl-mode)
 (use-package paradox)
 (use-package esup)
 (use-package projectile)
@@ -117,7 +121,6 @@
   :config
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
-
 
 (key-chord-define-global ";k" 'kill-buffer)
 (key-chord-define-global ";j" 'switch-to-buffer)
