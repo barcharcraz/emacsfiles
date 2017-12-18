@@ -46,10 +46,13 @@
   :config (helm-mode 1))
 
 (use-package helm-projectile)
+(use-package helm-systemd)
 (use-package helm-descbinds
   :config (helm-descbinds-mode))
 (use-package which-key
   :config (which-key-mode))
+
+
 (use-package company
   :config
   (global-company-mode)
@@ -71,7 +74,7 @@
   :bind (:map company-mode-map
 	 ("S-SPC" . helm-company)
 	 :map company-active-map
-	 ("S-SPC" . helm-company))i)
+	 ("S-SPC" . helm-company)))
 (use-package company-math
   :config
   (add-to-list 'company-backends 'company-math-symbols-unicode)
@@ -100,18 +103,24 @@
 (use-package treemacs-projectile)
 (use-package magit)
 (use-package ace-window
-  :chords ("pp" . ace-window))
+  :bind (:map evil-normal-state-map
+  	("SPC s" . ace-window)))
 (use-package dashboard
   :config (dashboard-setup-startup-hook))
 (use-package mode-icons
   :config (mode-icons-mode))
 (use-package tabbar-ruler)
-(use-package telephone-line
-  :config
-  (require 'telephone-line-config)
-  (telephone-line-evil-config))
+
+;; (use-package telephone-line
+;;   :config
+;;   (require 'telephone-line-config)
+;;   (telephone-line-evil-config))
+
+(use-package powerline
+  :after evil
+  :config (powerline-center-evil-theme))
+
 (use-package systemd)
-(use-package helm-systemd)
 (use-package flx)
 (use-package helm-flx
   :config (helm-flx-mode +1))
@@ -122,6 +131,9 @@
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
-(key-chord-define-global ";k" 'kill-buffer)
-(key-chord-define-global ";j" 'switch-to-buffer)
-
+(require 'bind-key)
+(bind-key "SPC j" 'switch-to-buffer evil-normal-state-map)
+(bind-key "SPC k" 'kill-buffer evil-normal-state-map)
+(bind-key "SPC SPC" 'keyboard-quit evil-normal-state-map)
+(provide 'init)
+;;; init.el ends here
