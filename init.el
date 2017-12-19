@@ -70,8 +70,6 @@
 (use-package company-quickhelp
   :after company
   :config (company-quickhelp-mode 1))
-(use-package company-emoji
-  :config (add-to-list 'company-backends 'company-emoji))
 (use-package helm-company
   :bind (:map company-mode-map
 	 ("S-SPC" . helm-company)
