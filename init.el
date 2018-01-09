@@ -1,6 +1,8 @@
 
 ;; do this first so it's not wierd
 ;; when the gui elements disappear
+
+;;; Code:
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -31,6 +33,7 @@
 (use-package use-package-chords
   :config (key-chord-mode 1))
 (use-package yasnippet)
+
 (use-package rainbow-delimiters
   :hook
   (c-mode . rainbow-delimiters-mode)
@@ -110,7 +113,11 @@
   :config (dashboard-setup-startup-hook))
 (use-package mode-icons
   :config (mode-icons-mode))
-(use-package tabbar-ruler)
+
+(use-package tabbar-ruler
+  :config
+  (tabbar-ruler-group-by-projectile-project))
+
 (use-package elscreen
   :custom
   (elscreen-prefix-key (kbd "C-b")))
