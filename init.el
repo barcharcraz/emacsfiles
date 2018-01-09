@@ -139,7 +139,8 @@
 (use-package doom-themes
   :config
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  (load-theme 'doom-spacegrey))
 (use-package indent-guide
   :hook
   (c++-mode . indent-guide-mode)
