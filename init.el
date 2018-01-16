@@ -37,21 +37,23 @@
 (use-package rainbow-delimiters
   :hook
   (c-mode . rainbow-delimiters-mode)
-  (c++-mode . rainbow-delimiters-mode))
+  (c++-mode . rainbow-delimiters-mode)
+  (python-mode . rainbow-delimiters-mode))
 (use-package evil
   :config (evil-mode 1))
 (use-package evil-mc
   :config
   (global-evil-mc-mode 1))
 
-(use-package helm
-  :bind ("M-x" . helm-M-x)
-  :config (helm-mode 1))
+;; (use-package helm
+;;   :bind ("M-x" . helm-M-x)
+;;   :config (helm-mode 1))
 
-(use-package helm-projectile)
-(use-package helm-systemd)
-(use-package helm-descbinds
-  :config (helm-descbinds-mode))
+;; (use-package helm-projectile)
+;; (use-package helm-systemd)
+;; (use-package helm-descbinds
+;;   :config (helm-descbinds-mode))
+
 (use-package which-key
   :config (which-key-mode))
 
@@ -73,11 +75,14 @@
 (use-package company-quickhelp
   :after company
   :config (company-quickhelp-mode 1))
-(use-package helm-company
-  :bind (:map company-mode-map
-	 ("S-SPC" . helm-company)
-	 :map company-active-map
-	 ("S-SPC" . helm-company)))
+
+
+;; (use-package helm-company
+;;   :bind (:map company-mode-map
+;; 	 ("S-SPC" . helm-company)
+;; 	 :map company-active-map
+;; 	 ("S-SPC" . helm-company)))
+
 (use-package company-math
   :config
   (add-to-list 'company-backends 'company-math-symbols-unicode)
@@ -95,6 +100,13 @@
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
 (use-package glsl-mode)
+(use-package elpy
+  :init
+  (setq elpy-rpc-python-command "python3")
+  (setq python-shell-interpreter "ipython3")
+  (setq python-shell-interpreter-args "-i --simple-prompt")
+  :config
+  (elpy-enable))
 (use-package paradox)
 (use-package esup)
 (use-package projectile)
@@ -132,8 +144,10 @@
 
 (use-package systemd)
 (use-package flx)
-(use-package helm-flx
-  :config (helm-flx-mode +1))
+
+;; (use-package helm-flx
+;;   :config (helm-flx-mode +1))
+
 (use-package company-flx
   :config (company-flx-mode +1))
 (use-package doom-themes
@@ -151,5 +165,8 @@
 (bind-key "SPC j" 'switch-to-buffer evil-normal-state-map)
 (bind-key "SPC k" 'kill-buffer evil-normal-state-map)
 (bind-key "SPC SPC" 'keyboard-quit evil-normal-state-map)
+
+(desktop-save-mode 1)
+
 (provide 'init)
 ;;; init.el ends here
