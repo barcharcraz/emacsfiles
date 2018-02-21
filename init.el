@@ -99,6 +99,7 @@
 (use-package clang-format)
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
+(use-package d-mode)
 (use-package glsl-mode)
 (use-package elpy
   :init
@@ -110,11 +111,9 @@
 (use-package paradox)
 (use-package esup)
 (use-package projectile)
-(use-package treemacs
+(use-package neotree
   :chords
-  ("\\]" . treemacs-toggle)
-  ("\\\\" . treemacs))
-
+  ("\\\\" . neotree-toggle))
 (use-package treemacs-evil)
 (use-package treemacs-projectile)
 (use-package magit)
