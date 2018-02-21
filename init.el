@@ -29,6 +29,13 @@
 ;; this makes it like Vim's managers (plugged and friends)
 (setq straight-use-package-by-default t)
 
+(use-package gnome-emacs-utils
+  :straight (gnome-emacs-utils
+	     :type git
+	     :host github
+	     :repo "federicomenaquintero/gnome-emacs-utils"))
+
+(use-package lice)
 (use-package no-littering)
 (use-package use-package-chords
   :config (key-chord-mode 1))
@@ -53,6 +60,14 @@
 ;; (use-package helm-systemd)
 ;; (use-package helm-descbinds
 ;;   :config (helm-descbinds-mode))
+
+(use-package ivy
+  :config
+  (ivy-mode 1)
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) "))
+(use-package counsel)
 
 (use-package which-key
   :config (which-key-mode))
@@ -97,6 +112,7 @@
 	 (c-mode . irony-mode)
 	 (irony-mode . irony-cdb-autosetup-compile-options)))
 (use-package clang-format)
+(use-package markdown-mode)
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
 (use-package d-mode)
