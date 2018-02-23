@@ -67,8 +67,10 @@
   :init
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
-(use-package counsel)
-
+(use-package counsel
+  :config (counsel-mode))
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
 (use-package which-key
   :config (which-key-mode))
 
@@ -76,7 +78,6 @@
 (use-package company
   :config
   (global-company-mode)
-  (company-tng-configure-default)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
 (use-package company-c-headers
@@ -140,7 +141,9 @@
   :config (dashboard-setup-startup-hook))
 (use-package mode-icons
   :config (mode-icons-mode))
-
+(use-package all-the-icons)
+(use-package all-the-icons-ivy
+  :config (all-the-icons-ivy-setup))
 (use-package tabbar-ruler
   :config
   (tabbar-ruler-group-by-projectile-project))
