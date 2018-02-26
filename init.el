@@ -114,6 +114,9 @@
 	 (irony-mode . irony-cdb-autosetup-compile-options)))
 (use-package clang-format)
 (use-package markdown-mode)
+(use-package fish-mode)
+(use-package fish-completion
+  :hook (fish-mode-hook . fish-completion-mode))
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
 (use-package d-mode)
@@ -128,9 +131,8 @@
 (use-package paradox)
 (use-package esup)
 (use-package projectile)
-(use-package neotree
-  :chords
-  ("\\\\" . neotree-toggle))
+(use-package treemacs
+  :chords ("\\\\" . treemacs-toggle))
 (use-package treemacs-evil)
 (use-package treemacs-projectile)
 (use-package magit)
