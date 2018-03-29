@@ -3,9 +3,9 @@
 ;; when the gui elements disappear
 
 ;;; Code:
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
+; (menu-bar-mode -1)
+; (tool-bar-mode -1)
+; (toggle-scroll-bar -1)
 
 (let ((bootstrap-file (concat user-emacs-directory "straight/bootstrap.el"))
       (bootstrap-version 2))
@@ -51,7 +51,14 @@
 (use-package evil-mc
   :config
   (global-evil-mc-mode 1))
-
+(use-package evil-org
+  :after org
+  :hook
+  (org-mode . evil-org-mode)
+  (evil-org-mode . evil-org-set-key-theme)
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 ;; (use-package helm
 ;;   :bind ("M-x" . helm-M-x)
 ;;   :config (helm-mode 1))
@@ -64,9 +71,11 @@
 (use-package ivy
   :config
   (ivy-mode 1)
-  :init
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) "))
+  (setq ivy-initial-inputs-alist nil)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "(%d/%d) "))
+	     
 (use-package counsel
   :config (counsel-mode))
 (use-package counsel-projectile
@@ -76,6 +85,8 @@
 
 
 (use-package company
+  :custom-face
+  (company-tooltip ((t (:inherit (fixed-pitch)))))
   :config
   (global-company-mode)
   (setq company-idle-delay 0)
@@ -130,11 +141,13 @@
   (elpy-enable))
 (use-package paradox)
 (use-package esup)
-(use-package projectile)
+(use-package projectile
+  :config (projectile-mode))
 (use-package treemacs
   :chords ("\\\\" . treemacs-toggle))
 (use-package treemacs-evil)
-(use-package treemacs-projectile)
+(use-package treemacs-projectile
+  :chords ("\\p" . treemacs-projectile))
 (use-package magit)
 (use-package ace-window
   :bind (:map evil-normal-state-map
@@ -164,7 +177,6 @@
 
 (use-package systemd)
 (use-package flx)
-
 ;; (use-package helm-flx
 ;;   :config (helm-flx-mode +1))
 
@@ -173,8 +185,7 @@
 (use-package doom-themes
   :config
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config)
-  (load-theme 'doom-spacegrey))
+  (doom-themes-org-config))
 (use-package indent-guide
   :hook
   (c++-mode . indent-guide-mode)
@@ -185,8 +196,7 @@
 (bind-key "SPC j" 'switch-to-buffer evil-normal-state-map)
 (bind-key "SPC k" 'kill-buffer evil-normal-state-map)
 (bind-key "SPC SPC" 'keyboard-quit evil-normal-state-map)
-
+(custom-set-faces '(default ((t (:family "DejaVu Sans")))))
 (desktop-save-mode 1)
-
 (provide 'init)
 ;;; init.el ends here
