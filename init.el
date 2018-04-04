@@ -130,8 +130,12 @@
   :hook (fish-mode-hook . fish-completion-mode))
 (use-package nim-mode
   :hook (nim-mode-hook . nimsuggest-mode))
+(use-package puppet-mode)
 (use-package d-mode)
 (use-package glsl-mode)
+(use-package robe
+  :hook
+  (ruby-mode . robe-mode))
 (use-package elpy
   :init
   (setq elpy-rpc-python-command "python3")
@@ -196,7 +200,9 @@
 (bind-key "SPC j" 'switch-to-buffer evil-normal-state-map)
 (bind-key "SPC k" 'kill-buffer evil-normal-state-map)
 (bind-key "SPC SPC" 'keyboard-quit evil-normal-state-map)
-(custom-set-faces '(default ((t (:family "DejaVu Sans")))))
+(custom-set-faces
+ '(default ((t (:family "DejaVu Sans"))))
+ '(term ((t (:inherit (fixed-pitch))))))
 (desktop-save-mode 1)
 (provide 'init)
 ;;; init.el ends here
