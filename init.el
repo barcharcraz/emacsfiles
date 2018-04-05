@@ -22,13 +22,44 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-
 (straight-use-package 'use-package)
+(require 'subr-x)
+(use-package git)
+
+(defun org-git-version ()
+  "The Git version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (git-run "describe"
+              "--match=release\*"
+              "--abbrev=6"
+              "HEAD"))))
+
+(defun org-release ()
+  "The release version of org-mode.
+Inserted by installing org-mode or when a release is made."
+  (require 'git)
+  (let ((git-repo (expand-file-name
+                   "straight/repos/org/" user-emacs-directory)))
+    (string-trim
+     (string-remove-prefix
+      "release_"
+      (git-run "describe"
+               "--match=release\*"
+               "--abbrev=0"
+               "HEAD")))))
+
+(provide 'org-version)
+
+
 
 ;; tell use package to always just install packages
 ;; this makes it like Vim's managers (plugged and friends)
 (setq straight-use-package-by-default t)
-
+(use-package org)
 (use-package gnome-emacs-utils
   :straight (gnome-emacs-utils
 	     :type git
@@ -203,6 +234,11 @@
 (custom-set-faces
  '(default ((t (:family "DejaVu Sans"))))
  '(term ((t (:inherit (fixed-pitch))))))
+(custom-set-variables
+ '(org-babel-load-languages
+   ((emacs-lisp . t)
+    (shell . t))))
+			     
 (desktop-save-mode 1)
 (provide 'init)
 ;;; init.el ends here
