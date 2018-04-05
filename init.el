@@ -60,12 +60,15 @@ Inserted by installing org-mode or when a release is made."
 ;; this makes it like Vim's managers (plugged and friends)
 (setq straight-use-package-by-default t)
 (use-package org)
+(use-package org-tempo
+	     :requires org
+	     :straight f)
 (use-package gnome-emacs-utils
   :straight (gnome-emacs-utils
 	     :type git
 	     :host github
 	     :repo "federicomenaquintero/gnome-emacs-utils"))
-
+(use-package f)
 (use-package lice)
 (use-package no-littering)
 (use-package use-package-chords
