@@ -187,6 +187,7 @@ Inserted by installing org-mode or when a release is made."
 (use-package treemacs-projectile
   :chords ("\\p" . treemacs-projectile))
 (use-package magit)
+(use-package evil-magit)
 (use-package ace-window
   :bind (:map evil-normal-state-map
   	("SPC s" . ace-window)))
@@ -239,9 +240,7 @@ Inserted by installing org-mode or when a release is made."
  '(term ((t (:inherit (fixed-pitch))))))
 (custom-set-variables
  '(org-babel-load-languages
-   ((emacs-lisp . t)
-    (shell . t))))
-			     
-(desktop-save-mode 1)
+   '(((emacs-lisp . t)
+      (shell . t)))))
 (provide 'init)
 ;;; init.el ends here
