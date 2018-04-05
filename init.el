@@ -24,7 +24,7 @@
 
 (straight-use-package 'use-package)
 (require 'subr-x)
-(use-package git)
+(straight-use-package 'git)
 
 (defun org-git-version ()
   "The Git version of org-mode.
