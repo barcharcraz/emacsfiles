@@ -1,23 +1,194 @@
-#+begin_src emacs-lisp :tangle yes
+#+property: tangle yes
+* Header
+** configuration
+*** custom file
+#+begin_src emacs-lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
+#+end_src
+*** package.el
+#+begin_src emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t)
+  (add-to-list 'package-archives
+               '("org" . "https://orgmode.org/elpa/") t)
+  (package-initialize)
+#+end_src
 
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
-
-(package-initialize)
-
-(setq use-package-always-ensure t)
+*** use-package
+#+begin_src emacs-lisp
 (unless package-archive-contents
   (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
+(setq use-package-always-ensure t)
+#+end_src
+* packages
+** use-package
+#+begin_src emacs-lisp
+(use-package use-package)
+#+end_src
+*** use-package-chords
+#+begin_src emacs-lisp
+  (use-package use-package-chords
+    :config (key-chord-mode 1))
+#+end_src
+** no littering 
+#+begin_src emacs-lisp
 (use-package no-littering)
+#+end_src
+** evil
+#+begin_src emacs-lisp
 (use-package evil
 	     :config (evil-mode 1))
-
 #+end_src
+*** evil plugins
+**** evil-org
+#+begin_src emacs-lisp
+  (use-package evil-org
+    :after org
+    :hook
+    (org-mode . evil-org-mode)
+    (evil-org-mode . evil-org-set-key-theme)
+    :requires evil-org-agenda
+    :config (evil-org-agenda-set-keys))
+#+end_src
+** org
+#+begin_src emacs-lisp
+  (use-package org
+    :ensure org-plus-contrib
+    :custom (org-src-fontify-nativly t))
+#+end_src
+
+** htmlize
+#+begin_src emacs-lisp	
+  (use-package htmlize)
+#+end_src
+** ivy
+#+begin_src emacs-lisp
+  (use-package ivy
+    :config (ivy-mode)
+    :custom
+    (ivy-use-virtual-buffers t)
+    (ivy-count-format "(%d/%d) "))
+#+end_src
+** counsel
+#+begin_src emacs-lisp
+  (use-package counsel
+    :config (counsel-mode))
+#+end_src
+*** counsel plugins
+**** projectile
+#+begin_src emacs-lisp
+  (use-package counsel-projectile
+    :config (counsel-projectile-mode))
+#+end_src
+** which key
+#+begin_src emacs-lisp
+  (use-package which-key
+    :config (which-key-mode))
+#+end_src
+** projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+    :config (projectile-mode))
+#+end_src
+** rainbow delimeters
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :hook
+    (c-mode . rainbow-delimeters-mode)
+    (c++-mode . rainbow-delimeters-mode)
+    (python-mode . rainbow-delimeters-mode))
+#+end_src
+** company
+#+begin_src emacs-lisp
+  (use-package company
+    :config
+    (global-company-mode)
+    :custom
+    (company-idle-delay 0)
+    (company-minimum-prefix-length 2))
+#+end_src
+*** c-headers
+#+begin_src emacs-lisp
+  (use-package company-c-headers
+    :config
+    (add-to-list 'company-backends 'company-c-headers))
+#+end_src
+*** company flx
+#+begin_src emacs-lisp
+  (use-package company-flx
+    :requires flx
+    :config (company-flx-mode +1))
+#+end_src
+** treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :chords ("\\\\" . treemacs-toggle))
+#+end_src
+*** treemacs evil
+#+begin_src emacs-lisp
+(use-package treemacs-evil)
+#+end_src
+*** treemacs projectile
+#+begin_src emacs-lisp
+  (use-package treemacs-projectile
+    :chords ("\\p" . treemacs-projectile))
+#+end_src
+
+** emojify
+#+begin_src emacs-lisp
+(use-package emojify)
+#+end_src
+** mode icons
+#+begin_src emacs-lisp
+  (use-package mode-icons
+    :config (mode-icons-mode))
+#+end_src
+** flx
+#+begin_src emacs-lisp
+(use-package flx)
+#+end_src
+
+** powerline
+#+begin_src emacs-lisp
+  (use-package powerline
+    :requires evil
+    :config (powerline-center-evil-theme))
+#+end_src
+* language support
+** puppet
+#+begin_src emacs-lisp
+  (use-package puppet-mode)
+#+end_src
+** salt
+#+begin_src emacs-lisp
+(use-package salt-mode)
+#+end_src
+** nim
+#+begin_src emacs-lisp
+(use-package nim-mode)
+#+end_src
+** fish
+#+BEGIN_SRC emacs-lisp
+(use-package fish-mode)
+#+END_SRC
+** ruby
+#+begin_src emacs-lisp
+(use-package robe
+  :hook (ruby-mode . robe-mode))
+#+end_src
+* customizations
+** variable pitch fonts
+   I really like variable pitched fonts (it's why I use emacs, so we're going
+   to set them up to be the default here. Note that I want to use them for
+   as much as possible, including code
+   #+begin_src emacs-lisp
+     (custom-set-faces
+      '(default ((t (:family "DejaVu Sans")))))
+   #+end_src
