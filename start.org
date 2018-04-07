@@ -58,6 +58,9 @@
     :config (evil-org-agenda-set-keys))
 #+end_src
 ** org
+   :properties:
+   :header-args: :tangle no
+   :end:
 #+begin_src emacs-lisp
   (use-package org
     :ensure org-plus-contrib
