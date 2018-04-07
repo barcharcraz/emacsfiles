@@ -183,6 +183,10 @@
 (use-package robe
   :hook (ruby-mode . robe-mode))
 #+end_src
+** web-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package web-mode)
+#+END_SRC
 * customizations
 ** variable pitch fonts
    I really like variable pitched fonts (it's why I use emacs, so we're going
