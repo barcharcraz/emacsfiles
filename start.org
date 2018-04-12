@@ -25,7 +25,7 @@
 #+END_SRC
 *** package.el
     :properties:
-    :header-args: :tangle no
+    :header-args: :tangle yes
     :end:
 #+begin_src emacs-lisp
   (require 'package)
@@ -39,7 +39,7 @@
 *** use-package
 **** package.el mode
      :properties:
-     :header-args: :tangle no
+     :header-args: :tangle yes
      :end:
 #+begin_src emacs-lisp
 (unless package-archive-contents
@@ -51,6 +51,9 @@
 (setq use-package-always-ensure t)
 #+end_src
 **** straight.el mode
+:properties:
+:header-args: :tangle no
+:end:
 #+BEGIN_SRC emacs-lisp
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
@@ -59,7 +62,7 @@
 *** org-hack
 #+begin_src emacs-lisp
 (require 'subr-x)
-
+(straight-use-package 'git)
 (defun org-git-version ()
   "The Git version of org-mode.
 Inserted by installing org-mode or when a release is made."
@@ -87,8 +90,6 @@ Inserted by installing org-mode or when a release is made."
                "HEAD")))))
 
 (provide 'org-version)
-
-(straight-use-package 'org) ;; or org-plus-contrib if desired
 #+end_src
 * packages
 ** use-package
@@ -126,9 +127,8 @@ Inserted by installing org-mode or when a release is made."
    :end:
 #+begin_src emacs-lisp
   (use-package org
-    :ensure t
-    :straight (:repo "https://code.orgmode.org/bzg/org-mode.git" :branch "master")
-    :custom (org-src-fontify-nativly t))
+    :straight t
+    :custom (org-src-fontify-natively t))
 #+end_src
 
 ** htmlize
