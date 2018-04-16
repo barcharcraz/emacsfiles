@@ -254,10 +254,15 @@ Inserted by installing org-mode or when a release is made."
 (use-package robe
   :hook (ruby-mode . robe-mode))
 #+end_src
+** meson
+#+BEGIN_SRC emacs-lisp
+(use-package meson-mode)
+#+END_SRC
 ** web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
-#+END_SRC
+#+END_SR
+C
 * customizations
 ** variable pitch fonts
    I really like variable pitched fonts (it's why I use emacs, so we're going
