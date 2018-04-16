@@ -121,6 +121,10 @@ Inserted by installing org-mode or when a release is made."
     :requires evil-org-agenda
     :config (evil-org-agenda-set-keys))
 #+end_src
+**** evil-magit
+#+BEGIN_SRC emacs-lisp
+(use-package evil-magit)
+#+END_SRC
 ** org
    :properties:
    :header-args: :tangle yes
@@ -232,6 +236,10 @@ Inserted by installing org-mode or when a release is made."
     :requires evil
     :config (powerline-center-evil-theme))
 #+end_src
+** magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit)
+#+END_SRC
 * language support
 ** puppet
 #+begin_src emacs-lisp
@@ -261,8 +269,7 @@ Inserted by installing org-mode or when a release is made."
 ** web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
-#+END_SR
-C
+#+END_SRC
 * customizations
 ** variable pitch fonts
    I really like variable pitched fonts (it's why I use emacs, so we're going
