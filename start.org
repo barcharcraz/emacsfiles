@@ -8,6 +8,9 @@
   (load custom-file))
 #+end_src
 *** straight.el
+    :properties:
+    :header-args: :tangle :no
+    :end:
     we add this because it allows us to directly
     build from git repos, we need this in particular
     for org-mode
@@ -60,6 +63,9 @@
 #+END_SRC
 
 *** org-hack
+:properties:
+:header-args: :tangle :no
+:end:
 #+begin_src emacs-lisp
 (require 'subr-x)
 (straight-use-package 'git)
@@ -131,7 +137,6 @@ Inserted by installing org-mode or when a release is made."
    :end:
 #+begin_src emacs-lisp
   (use-package org
-    :straight t
     :custom (org-src-fontify-natively t))
 #+end_src
 
