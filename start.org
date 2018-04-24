@@ -246,6 +246,14 @@ Inserted by installing org-mode or when a release is made."
 (use-package magit)
 #+END_SRC
 * language support
+** markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode)
+#+END_SRC 
+** rpm
+#+BEGIN_SRC emacs-lisp
+(use-package rpm-spec-mode)
+#+END_SRC
 ** puppet
 #+begin_src emacs-lisp
   (use-package puppet-mode)
