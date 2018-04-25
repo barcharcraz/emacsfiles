@@ -137,7 +137,8 @@ Inserted by installing org-mode or when a release is made."
    :end:
 #+begin_src emacs-lisp
   (use-package org
-    :custom (org-src-fontify-natively t))
+    :custom (org-src-fontify-natively t)
+    :ensure org-plus-contrib)
 #+end_src
 
 ** htmlize
