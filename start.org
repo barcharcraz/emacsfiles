@@ -241,6 +241,17 @@ Inserted by installing org-mode or when a release is made."
     :requires evil
     :config (powerline-center-evil-theme))
 #+end_src
+** flycheck
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :config (global-flycheck-mode))
+#+END_SRC
+*** flycheck-julia
+    see also [[julia]]
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck-julia
+    :config (flycheck-julia-setup))
+#+END_SRC
 ** magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit)
@@ -275,6 +286,18 @@ Inserted by installing org-mode or when a release is made."
 (use-package robe
   :hook (ruby-mode . robe-mode))
 #+end_src
+** julia
+#+BEGIN_SRC emacs-lisp
+  (use-package julia-mode)
+#+END_SRC
+*** integrations
+- [[flycheck-julia]]
+** haskell
+#+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode)
+  (use-package intero
+    :hook (haskell-mode . intero-mode))
+#+END_SRC 
 ** meson
 #+BEGIN_SRC emacs-lisp
 (use-package meson-mode)
