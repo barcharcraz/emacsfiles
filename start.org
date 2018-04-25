@@ -196,6 +196,12 @@ Inserted by installing org-mode or when a release is made."
     :config
     (add-to-list 'company-backends 'company-c-headers))
 #+end_src
+*** company-math
+    This adds math symbols and unicode things
+#+BEGIN_SRC emacs-lisp
+  (use-package company-math
+    :config (add-to-list 'company-backends 'company-math-symbols-unicode))
+#+END_SRC
 *** company flx
 #+begin_src emacs-lisp
   (use-package company-flx
