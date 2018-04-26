@@ -1,4 +1,4 @@
-#+property: tangle yes
+#+property: header-args :tangle yes
 * Header
 ** configuration
 *** custom file
