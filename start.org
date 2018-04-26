@@ -202,6 +202,15 @@ Inserted by installing org-mode or when a release is made."
   (use-package company-math
     :config (add-to-list 'company-backends 'company-math-symbols-unicode))
 #+END_SRC
+*** company-box
+    This package adds a frontend to company that uses a  real box
+    This is nice because it works with variable pitch fonts, and can have
+    colors and whatnot. Also it can extend off the side of the emacs window.
+    This does require emacs 26 or above however.
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-box
+	:hook (company-mode . company-box-mode))
+    #+END_SRC
 *** company flx
 #+begin_src emacs-lisp
   (use-package company-flx
@@ -271,6 +280,11 @@ Inserted by installing org-mode or when a release is made."
   (use-package flycheck-julia
     :config (flycheck-julia-setup))
 #+END_SRC
+** paradox
+   Paradox is a nicer package list for package.el
+   #+BEGIN_SRC emacs-lisp
+     (use-package paradox)
+   #+END_SRC
 ** magit
 #+BEGIN_SRC emacs-lisp
 (use-package magit)
