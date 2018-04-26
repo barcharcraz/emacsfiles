@@ -228,6 +228,16 @@ Inserted by installing org-mode or when a release is made."
 #+begin_src emacs-lisp
 (use-package emojify)
 #+end_src
+** all the icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons)
+#+END_SRC
+*** all the icons ivy
+    [[ivy]]
+    #+BEGIN_SRC emacs-lisp
+      (use-package all-the-icons-ivy
+	:config (all-the-icons-ivy-setup))
+    #+END_SRC
 ** mode icons
 #+begin_src emacs-lisp
   (use-package mode-icons
@@ -244,10 +254,13 @@ Inserted by installing org-mode or when a release is made."
 #+END_SRC
 ** powerline
 #+begin_src emacs-lisp
-  (use-package powerline
-    :requires evil
-    :config (powerline-center-evil-theme))
+  (use-package powerline)
 #+end_src
+*** spaceline
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :config (spaceline-spacemacs-theme))
+#+END_SRC
 ** flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
