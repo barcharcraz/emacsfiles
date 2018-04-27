@@ -4,6 +4,7 @@
 ;; embedded in literate Org-mode files.
 
 (require 'org-install)
+(package-initialize)
 (org-babel-load-file (expand-file-name "start.org" user-emacs-directory))
 (provide 'init)
 ;;; init.el ends here
