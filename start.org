@@ -130,6 +130,13 @@ Inserted by installing org-mode or when a release is made."
 #+BEGIN_SRC emacs-lisp
 (use-package evil-magit)
 #+END_SRC
+** emamux
+This package lets us send commands to tmux, it's very handy
+#+BEGIN_SRC emacs-lisp
+  (use-package emamux
+    :bind-keymap (("C-`" . emamux:keymap))
+    :chords (("``" . emamux:send-region)))
+#+END_SRC
 ** org
    :properties:
    :header-args: :tangle yes
@@ -139,7 +146,11 @@ Inserted by installing org-mode or when a release is made."
     :custom (org-src-fontify-natively t)
     :ensure org-plus-contrib)
 #+end_src
-
+*** ob-async
+This allows task execution in parrallel
+#+BEGIN_SRC emacs-lisp
+(use-package ob-async)
+#+END_SRC
 ** htmlize
 #+begin_src emacs-lisp	
   (use-package htmlize)
@@ -208,8 +219,9 @@ Inserted by installing org-mode or when a release is made."
     colors and whatnot. Also it can extend off the side of the emacs window.
     This does require emacs 26 or above however.
     #+BEGIN_SRC emacs-lisp
+    (if (version< "26" emacs-version)
       (use-package company-box
-	:hook (company-mode . company-box-mode))
+	:hook (company-mode . company-box-mode)))
     #+END_SRC
 *** company flx
 #+begin_src emacs-lisp
