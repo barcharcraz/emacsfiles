@@ -361,6 +361,12 @@ This allows task execution in parrallel
 #+BEGIN_SRC emacs-lisp
 (use-package meson-mode)
 #+END_SRC
+** lisps 
+*** guile
+#+BEGIN_SRC emacs-lisp
+  (use-package paredit)
+  (use-package geiser)
+#+END_SRC
 ** web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
