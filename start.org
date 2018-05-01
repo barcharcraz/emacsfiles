@@ -301,6 +301,20 @@ This allows task execution in parrallel
 #+BEGIN_SRC emacs-lisp
 (use-package magit)
 #+END_SRC
+** docker
+#+BEGIN_SRC emacs-lisp
+  (use-package docker
+    :config (docker-global-mode))
+  (use-package docker-tramp)
+#+END_SRC
+** kubernetes
+#+BEGIN_SRC emacs-lisp
+  (use-package kubernetes
+    :commands (kubernetes-overview))
+
+  (use-package kubernetes-evil
+    :after kubernetes)
+#+END_SRC
 * language support
 ** markdown
 #+BEGIN_SRC emacs-lisp
@@ -350,6 +364,10 @@ This allows task execution in parrallel
 ** web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
+#+END_SRC
+** dockerfiles
+#+BEGIN_SRC emacs-lisp
+  (use-package dockerfile-mode)
 #+END_SRC
 * customizations
 ** variable pitch fonts
