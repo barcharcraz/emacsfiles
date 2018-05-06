@@ -143,6 +143,8 @@ This package lets us send commands to tmux, it's very handy
    :end:
 #+begin_src emacs-lisp
   (use-package org
+    :config
+    (require 'org-mouse)
     :custom (org-src-fontify-natively t)
     :ensure org-plus-contrib)
 #+end_src
@@ -232,7 +234,7 @@ This allows task execution in parrallel
 ** treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
-    :chords ("\\\\" . treemacs-toggle))
+    :chords ("\\\\" . treemacs))
 #+end_src
 *** treemacs evil
 #+begin_src emacs-lisp
@@ -384,3 +386,9 @@ This allows task execution in parrallel
      (custom-set-faces
       '(default ((t (:family "DejaVu Sans")))))
    #+end_src
+** diary file
+#+BEGIN_SRC emacs-lisp
+
+  (custom-set-variables
+   '(diary-file "~/org/diary"))
+#+END_SRC
