@@ -225,6 +225,15 @@ This allows task execution in parrallel
       (use-package company-box
 	:hook (company-mode . company-box-mode)))
     #+END_SRC
+*** company-shell
+this helps us with shells, and has specific support for [[fish]]
+#+BEGIN_SRC emacs-lisp
+  (use-package company-shell
+    :config (add-to-list 'company-backends
+			 '(company-shell
+			   company-fish-shell
+			   company-shell-env)))
+#+END_SRC
 *** company flx
 #+begin_src emacs-lisp
   (use-package company-flx
@@ -340,7 +349,7 @@ This allows task execution in parrallel
 #+end_src
 ** fish
 #+BEGIN_SRC emacs-lisp
-(use-package fish-mode)
+  (use-package fish-mode)
 #+END_SRC
 ** ruby
 #+begin_src emacs-lisp
