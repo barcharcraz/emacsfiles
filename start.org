@@ -203,6 +203,12 @@ This allows task execution in parrallel
     (company-idle-delay 0)
     (company-minimum-prefix-length 2))
 #+end_src
+*** irony
+#+BEGIN_SRC emacs-lisp
+  (use-package company-irony
+    :config
+    (add-to-list 'company-backends 'company-irony))
+#+END_SRC
 *** c-headers
 #+begin_src emacs-lisp
   (use-package company-c-headers
@@ -331,6 +337,14 @@ this helps us with shells, and has specific support for [[fish]]
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode)
 #+END_SRC 
+** c++
+#+BEGIN_SRC emacs-lisp
+  (use-package irony
+    :hook
+    (c++-mode . irony-mode)
+    (c-mode . irony-mode)
+    (objc-mode . irony-mode))
+#+END_SRC
 ** rpm
 #+BEGIN_SRC emacs-lisp
 (use-package rpm-spec-mode)
