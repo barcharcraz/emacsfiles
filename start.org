@@ -332,6 +332,11 @@ this helps us with shells, and has specific support for [[fish]]
   (use-package kubernetes-evil
     :after kubernetes)
 #+END_SRC
+** spacemacs-theme
+#+BEGIN_SRC emacs-lisp
+  (use-package spacemacs-dark-theme
+    :ensure spacemacs-theme)
+#+END_SRC
 * language support
 ** markdown
 #+BEGIN_SRC emacs-lisp
