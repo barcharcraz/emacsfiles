@@ -246,6 +246,12 @@ this helps us with shells, and has specific support for [[fish]]
     :requires flx
     :config (company-flx-mode +1))
 #+end_src
+** neotree
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree
+    :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    :bind ([f8] . neotree-toggle))
+#+END_SRC
 ** treemacs
 #+begin_src emacs-lisp
   (use-package treemacs
@@ -382,8 +388,10 @@ this helps us with shells, and has specific support for [[fish]]
 #+END_SRC
 ** ruby
 #+begin_src emacs-lisp
-(use-package robe
-  :hook (ruby-mode . robe-mode))
+  (use-package robe
+    :hook (ruby-mode . robe-mode))
+  (use-package inf-ruby
+    :hook (ruby-mode . inf-ruby-minor-mode))
 #+end_src
 ** julia
 #+BEGIN_SRC emacs-lisp
