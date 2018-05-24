@@ -337,6 +337,16 @@ this helps us with shells, and has specific support for [[fish]]
   (use-package spacemacs-dark-theme
     :ensure spacemacs-theme)
 #+END_SRC
+** sr-speedbar
+#+BEGIN_SRC emacs-lisp
+(use-package sr-speedbar)
+#+END_SRC
+** projectile-speedbar
+#+begin_src emacs-lisp
+  (use-package projectile-speedbar
+    :bind (:map evil-normal-state-map
+                ("op" . projectile-speedbar-open-current-buffer-in-tree)))
+#+end_src
 * language support
 ** markdown
 #+BEGIN_SRC emacs-lisp
