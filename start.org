@@ -143,6 +143,8 @@ This package lets us send commands to tmux, it's very handy
    :end:
 #+begin_src emacs-lisp
   (use-package org
+    :hook
+    (org-mode . org-indent-mode)
     :config
     (require 'org-mouse)
     :custom (org-src-fontify-natively t)
@@ -275,6 +277,10 @@ this helps us with shells, and has specific support for [[fish]]
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons)
 #+END_SRC
+*** all the icons dired 
+#+begin_src emacs-lisp
+  (use-package all-the-icons-dired)
+#+end_src
 *** all the icons ivy
     [[ivy]]
     #+BEGIN_SRC emacs-lisp
@@ -340,18 +346,22 @@ this helps us with shells, and has specific support for [[fish]]
 #+END_SRC
 ** spacemacs-theme
 #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-dark-theme
-    :ensure spacemacs-theme)
+  (use-package spacemacs-theme
+    :no-require t)
 #+END_SRC
 ** sr-speedbar
 #+BEGIN_SRC emacs-lisp
 (use-package sr-speedbar)
 #+END_SRC
+** ecb (emacs-code-browser)
+#+begin_src emacs-lisp
+  (use-package ecb)
+  #+end_src
 ** projectile-speedbar
 #+begin_src emacs-lisp
   (use-package projectile-speedbar
     :bind (:map evil-normal-state-map
-                ("op" . projectile-speedbar-open-current-buffer-in-tree)))
+                ("gop" . projectile-speedbar-open-current-buffer-in-tree)))
 #+end_src
 * language support
 ** markdown
@@ -438,3 +448,45 @@ this helps us with shells, and has specific support for [[fish]]
   (custom-set-variables
    '(diary-file "~/org/diary"))
 #+END_SRC
+** lowercase templates
+org's templates are allcaps by default and I think this looks bad
+#+begin_src emacs-lisp  
+  (custom-set-variables
+   '(org-structure-template-alist
+       (quote
+        (("s" "#+begin_src ?
+
+  ,#+end_src")
+      ("e" "#+begin_example
+  ?
+  ,#+end_example")
+      ("q" "#+begin_quote
+  ?
+  ,#+end_quote")
+      ("v" "#+begin_verse
+  ?
+  ,#+end_verse")
+      ("v" "#+begin_verbatim
+  ?
+  ,#+end_verbatim")
+      ("c" "#+begin_center
+  ?
+  ,#+end_center")
+      ("c" "#+begin_comment
+  ?
+  ,#+end_comment")
+      ("l" "#+begin_export latex
+  ?
+  ,#+end_export")
+      ("l" "#+latex: ")
+      ("h" "#+begin_export html
+  ?
+  ,#+end_export")
+      ("h" "#+html: ")
+      ("a" "#+begin_export ascii
+  ?
+  ,#+end_export")
+      ("a" "#+ascii: ")
+      ("i" "#+index: ?")
+      ("i" "#+include: %file ?")))))
+#+end_src
