@@ -315,6 +315,11 @@ this helps us with shells, and has specific support for [[fish]]
   (use-package flycheck
     :config (global-flycheck-mode))
 #+END_SRC
+*** flycheck-irony
+#+begin_src emacs-lisp
+  (use-package flycheck-irony
+    :hook (flycheck-mode . flycheck-irony-setup))
+#+end_src
 *** flycheck-julia
     see also [[julia]]
 #+BEGIN_SRC emacs-lisp
