@@ -211,9 +211,18 @@ This allows task execution in parrallel
     :config
     (add-to-list 'company-backends 'company-irony))
 #+END_SRC
-*** c-headers
+*** irony-c-headers
+This is like [[c-headers]] but integrates with irony-mode
 #+begin_src emacs-lisp
+  (use-package company-irony-c-headers
+    :after (irony)
+    :config
+    (add-to-list 'company-backends '(company-irony-c-headers company-irony)))
+#+end_src
+*** c-headers
+#+begin_src emacs-lisp :tangle no
   (use-package company-c-headers
+    :after (company-irony-c-headers)
     :config
     (add-to-list 'company-backends 'company-c-headers))
 #+end_src
@@ -228,7 +237,7 @@ This allows task execution in parrallel
     This is nice because it works with variable pitch fonts, and can have
     colors and whatnot. Also it can extend off the side of the emacs window.
     This does require emacs 26 or above however.
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
     (if (version< "26" emacs-version)
       (use-package company-box
 	:hook (company-mode . company-box-mode)))
