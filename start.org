@@ -1,4 +1,4 @@
-#+property: header-args :tangle yes
+#+property: header-args :tangle yes :results silent
 * Header
 ** configuration
 *** custom file
@@ -203,13 +203,17 @@ This allows task execution in parrallel
     (global-company-mode)
     :custom
     (company-idle-delay 0)
-    (company-minimum-prefix-length 2))
+    (company-minimum-prefix-length 2)
+    :bind
+    ("C-SPC" . company-complete))
 #+end_src
+
+#+RESULTS:
+: company-complete
+
 *** irony
 #+BEGIN_SRC emacs-lisp
-  (use-package company-irony
-    :config
-    (add-to-list 'company-backends 'company-irony))
+  (use-package company-irony)
 #+END_SRC
 *** irony-c-headers
 This is like [[c-headers]] but integrates with irony-mode
@@ -237,7 +241,7 @@ This is like [[c-headers]] but integrates with irony-mode
     This is nice because it works with variable pitch fonts, and can have
     colors and whatnot. Also it can extend off the side of the emacs window.
     This does require emacs 26 or above however.
-    #+BEGIN_SRC emacs-lisp :tangle no
+    #+BEGIN_SRC emacs-lisp :tangle yes
     (if (version< "26" emacs-version)
       (use-package company-box
 	:hook (company-mode . company-box-mode)))
@@ -388,7 +392,8 @@ this helps us with shells, and has specific support for [[fish]]
     :hook
     (c++-mode . irony-mode)
     (c-mode . irony-mode)
-    (objc-mode . irony-mode))
+    (objc-mode . irony-mode)
+    (irony-mode . irony-cdb-autosetup-compile-options))
 #+END_SRC
 ** rpm
 #+BEGIN_SRC emacs-lisp
