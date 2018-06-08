@@ -381,6 +381,13 @@ this helps us with shells, and has specific support for [[fish]]
     :bind (:map evil-normal-state-map
                 ("gop" . projectile-speedbar-open-current-buffer-in-tree)))
 #+end_src
+** editorconfig
+Editorconfig is a package to configure a wide variety of editors
+more information at [[https://editorconfig.org/]]
+#+begin_src emacs-lisp
+  (use-package editorconfig
+    :config (editorconfig-mode 1))
+#+end_src
 * language support
 ** markdown
 #+BEGIN_SRC emacs-lisp
