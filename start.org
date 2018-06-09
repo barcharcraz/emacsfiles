@@ -445,8 +445,13 @@ more information at [[https://editorconfig.org/]]
 #+BEGIN_SRC emacs-lisp
 (use-package meson-mode)
 #+END_SRC
-** lisps 
+** lisps
+*** racket 
+#+begin_src emacs-lisp
+  (use-package racket-mode)
+#+end_src
 *** guile
+*** 
 #+BEGIN_SRC emacs-lisp
   (use-package paredit)
   (use-package geiser)
@@ -455,6 +460,10 @@ more information at [[https://editorconfig.org/]]
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
 #+END_SRC
+** D 
+#+begin_src emacs-lisp
+  (use-package d-mode)
+#+end_src
 ** dockerfiles
 #+BEGIN_SRC emacs-lisp
   (use-package dockerfile-mode)
