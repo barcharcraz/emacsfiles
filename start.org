@@ -7,25 +7,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 #+end_src
-*** straight.el
-    :properties:
-    :header-args: :tangle :no
-    :end:
-    we add this because it allows us to directly
-    build from git repos, we need this in particular
-    for org-mode
-#+BEGIN_SRC emacs-lisp
-(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-#+END_SRC
 *** package.el
     :properties:
     :header-args: :tangle yes
@@ -51,50 +32,6 @@
   (package-install 'use-package))
 
 (setq use-package-always-ensure t)
-#+end_src
-**** straight.el mode
-:properties:
-:header-args: :tangle no
-:end:
-#+BEGIN_SRC emacs-lisp
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-#+END_SRC
-
-*** org-hack
-:properties:
-:header-args: :tangle :no
-:end:
-#+begin_src emacs-lisp
-(require 'subr-x)
-(straight-use-package 'git)
-(defun org-git-version ()
-  "The Git version of org-mode.
-Inserted by installing org-mode or when a release is made."
-  (require 'git)
-  (let ((git-repo (expand-file-name
-                   "straight/repos/org/" user-emacs-directory)))
-    (string-trim
-     (git-run "describe"
-              "--match=release\*"
-              "--abbrev=6"
-              "HEAD"))))
-
-(defun org-release ()
-  "The release version of org-mode.
-Inserted by installing org-mode or when a release is made."
-  (require 'git)
-  (let ((git-repo (expand-file-name
-                   "straight/repos/org/" user-emacs-directory)))
-    (string-trim
-     (string-remove-prefix
-      "release_"
-      (git-run "describe"
-               "--match=release\*"
-               "--abbrev=0"
-               "HEAD")))))
-
-(provide 'org-version)
 #+end_src
 * packages
 ** use-package
