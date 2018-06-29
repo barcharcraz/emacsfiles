@@ -45,7 +45,7 @@
 #+end_src
 ** no littering 
 #+begin_src emacs-lisp
-(use-package no-littering)
+  (use-package no-littering)
 #+end_src
 ** evil
 #+begin_src emacs-lisp
@@ -104,6 +104,14 @@ This allows task execution in parrallel
     (ivy-use-virtual-buffers t)
     (ivy-count-format "(%d/%d) "))
 #+end_src
+*** ivy-posframe
+#+begin_src emacs-lisp
+  (use-package ivy-posframe
+    :config
+    (ivy-posframe-enable)
+    :custom
+    (ivy-display-function #'ivy-posframe-display "Use postframe for ivy"))
+#+end_src
 ** counsel
 #+begin_src emacs-lisp
   (use-package counsel
@@ -144,10 +152,6 @@ This allows task execution in parrallel
     :bind
     ("C-SPC" . company-complete))
 #+end_src
-
-#+RESULTS:
-: company-complete
-
 *** irony
 #+BEGIN_SRC emacs-lisp
   (use-package company-irony)
@@ -178,7 +182,7 @@ This is like [[c-headers]] but integrates with irony-mode
     This is nice because it works with variable pitch fonts, and can have
     colors and whatnot. Also it can extend off the side of the emacs window.
     This does require emacs 26 or above however.
-    #+BEGIN_SRC emacs-lisp :tangle yes
+    #+BEGIN_SRC emacs-lisp :tangle no
     (if (version< "26" emacs-version)
       (use-package company-box
 	:hook (company-mode . company-box-mode)))
@@ -192,6 +196,21 @@ this helps us with shells, and has specific support for [[fish]]
 			   company-fish-shell
 			   company-shell-env)))
 #+END_SRC
+*** company-posframe 
+This is an alternitive to [[company-box]] that seems to be more active. It's been
+renamed to company-posframe, but that's not propagated to melpa yet as of
+<2018-06-28 Thu>.
+#+begin_src emacs-lisp :tangle no
+  (use-package company-childframe
+    :config (company-childframe-mode 1))
+#+end_src
+*** company-lsp
+#+begin_src emacs-lisp
+  (use-package company-lsp
+    :after (company-irony-c-headers)
+    :config
+    (add-to-list 'company-backends 'company-lsp))
+#+end_src
 *** company flx
 #+begin_src emacs-lisp
   (use-package company-flx
@@ -265,6 +284,13 @@ this helps us with shells, and has specific support for [[fish]]
   (use-package flycheck
     :config (global-flycheck-mode))
 #+END_SRC
+*** flycheck-posframe
+#+begin_src emacs-lisp
+  (use-package flycheck-posframe
+    :after (flycheck)
+    :hook (flycheck-mode . flycheck-posframe-mode)
+    :config (flycheck-posframe-configure-pretty-defaults))
+#+end_src
 *** flycheck-irony
 #+begin_src emacs-lisp
   (use-package flycheck-irony
@@ -325,6 +351,30 @@ more information at [[https://editorconfig.org/]]
   (use-package editorconfig
     :config (editorconfig-mode 1))
 #+end_src
+
+** language server protocol
+:properties:
+:custom_id: lsp-mode
+:end:
+This is for the language server protocol
+#+begin_src emacs-lisp
+  (use-package lsp-mode)
+#+end_src
+*** lsp-ui
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode))
+#+end_src
+*** lsp-python
+#+begin_src emacs-lisp
+  (use-package lsp-python
+    :hook (python-mode . lsp-python-enable))
+#+end_src
+*** lsp-ccls
+#+begin_src emacs-lisp
+  (use-package ccls
+    :hook (c++mode . lsp-ccls-enable))
+#+end_src
 * language support
 ** markdown
 #+BEGIN_SRC emacs-lisp
@@ -353,7 +403,8 @@ more information at [[https://editorconfig.org/]]
 #+end_src
 ** nim
 #+begin_src emacs-lisp
-(use-package nim-mode)
+  (use-package nim-mode
+    :hook (nim-mode . nimsuggest-mode))
 #+end_src
 ** fish
 #+BEGIN_SRC emacs-lisp
@@ -410,10 +461,17 @@ more information at [[https://editorconfig.org/]]
    I really like variable pitched fonts (it's why I use emacs, so we're going
    to set them up to be the default here. Note that I want to use them for
    as much as possible, including code
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle yes
      (custom-set-faces
       '(default ((t (:family "DejaVu Sans")))))
    #+end_src
+** company fixed pitch font
+while I love variable pitched fonts company has trouble with them (the completions
+don't line up. Thus we are going to disable them in the company completion window.
+#+begin_src emacs-lisp
+  (custom-set-faces
+   '(company-tooltip ((t (:inherit fixed-pitch))))) 
+#+end_src
 ** diary file
 #+BEGIN_SRC emacs-lisp
 
