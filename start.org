@@ -104,7 +104,12 @@ This allows task execution in parrallel
     (ivy-use-virtual-buffers t)
     (ivy-count-format "(%d/%d) "))
 #+end_src
+*** ivy-gitlab
+#+begin_src emacs-lisp
+  (use-package ivy-gitlab)
+#+end_src
 *** ivy-posframe
+*** 
 #+begin_src emacs-lisp
   (use-package ivy-posframe
     :config
@@ -313,8 +318,7 @@ renamed to company-posframe, but that's not propagated to melpa yet as of
 #+END_SRC
 ** docker
 #+BEGIN_SRC emacs-lisp
-  (use-package docker
-    :config (docker-global-mode))
+  (use-package docker)
   (use-package docker-tramp)
 #+END_SRC
 ** kubernetes
@@ -344,6 +348,11 @@ renamed to company-posframe, but that's not propagated to melpa yet as of
     :bind (:map evil-normal-state-map
                 ("gop" . projectile-speedbar-open-current-buffer-in-tree)))
 #+end_src
+** persp-mode 
+#+begin_src emacs-lisp
+  (use-package persp-mode
+    :config (persp-mode 1))
+#+end_src
 ** editorconfig
 Editorconfig is a package to configure a wide variety of editors
 more information at [[https://editorconfig.org/]]
@@ -352,6 +361,25 @@ more information at [[https://editorconfig.org/]]
     :config (editorconfig-mode 1))
 #+end_src
 
+** twittering (twitter mode)
+#+begin_src emacs-lisp 
+(use-package twittering-mode)
+#+end_src
+** md4rd (reddit)
+I like reddit, this helps me use it even when the boss
+is in the room :)
+#+begin_src emacs-lisp 
+(use-package md4rd)
+#+end_src
+** gitlab 
+#+begin_src emacs-lisp
+  (use-package gitlab)
+#+end_src
+** yasnippet 
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :config (yas-global-mode 1))
+#+end_src
 ** language server protocol
 :properties:
 :custom_id: lsp-mode
