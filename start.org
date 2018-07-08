@@ -384,7 +384,20 @@ is in the room :)
   (use-package yasnippet
     :config (yas-global-mode 1))
 #+end_src
+** rspec-mode
+see also [[ruby]]
+#+begin_src emacs-lisp
+  (use-package rspec-mode
+    :config (rspec-install-snippets))
+#+end_src
+** yard-mode
+#+begin_src emacs-lisp
+  (use-package yard-mode
+    :hook ((ruby-mode . yard-mode)
+           (ruby-mode . eldoc-mode)))
+#+end_src
 ** language server protocol
+** 
 :properties:
 :custom_id: lsp-mode
 :end:
@@ -449,6 +462,8 @@ This is for the language server protocol
   (use-package inf-ruby
     :hook (ruby-mode . inf-ruby-minor-mode))
 #+end_src
+*** [[rspec-mode]]
+*** [[yard-mode]]
 ** julia
 #+BEGIN_SRC emacs-lisp
   (use-package julia-mode)
