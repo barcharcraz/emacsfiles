@@ -510,8 +510,13 @@ This is for the language server protocol
    as much as possible, including code
    #+begin_src emacs-lisp :tangle yes
      (custom-set-faces
-      '(default ((t (:family "DejaVu Sans")))))
+      '(default ((t (:family "Noto Sans" :inherit variable-pitch)))))
+     (custom-set-faces
+      '(varible-pitch ((t (:family "Noto Sans")))))
    #+end_src
+** unicode fonts
+Emacs maps many unicode blocks by default, but not all of them,
+we can use ~set-fontset-font~ to add fonts to the mapping.
 ** company fixed pitch font
 while I love variable pitched fonts company has trouble with them (the completions
 don't line up. Thus we are going to disable them in the company completion window.
