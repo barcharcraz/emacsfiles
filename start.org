@@ -112,15 +112,6 @@ This allows task execution in parrallel
 #+begin_src emacs-lisp
   (use-package ivy-gitlab)
 #+end_src
-*** ivy-posframe
-*** 
-#+begin_src emacs-lisp
-  (use-package ivy-posframe
-    :config
-    (ivy-posframe-enable)
-    :custom
-    (ivy-display-function #'ivy-posframe-display "Use postframe for ivy"))
-#+end_src
 ** counsel
 #+begin_src emacs-lisp
   (use-package counsel
@@ -205,14 +196,6 @@ this helps us with shells, and has specific support for [[fish]]
 			   company-fish-shell
 			   company-shell-env)))
 #+END_SRC
-*** company-posframe 
-This is an alternitive to [[company-box]] that seems to be more active. It's been
-renamed to company-posframe, but that's not propagated to melpa yet as of
-<2018-06-28 Thu>.
-#+begin_src emacs-lisp :tangle no
-  (use-package company-childframe
-    :config (company-childframe-mode 1))
-#+end_src
 *** company-lsp
 #+begin_src emacs-lisp
   (use-package company-lsp
@@ -293,13 +276,6 @@ renamed to company-posframe, but that's not propagated to melpa yet as of
   (use-package flycheck
     :config (global-flycheck-mode))
 #+END_SRC
-*** flycheck-posframe
-#+begin_src emacs-lisp
-  (use-package flycheck-posframe
-    :after (flycheck)
-    :hook (flycheck-mode . flycheck-posframe-mode)
-    :config (flycheck-posframe-configure-pretty-defaults))
-#+end_src
 *** flycheck-irony
 #+begin_src emacs-lisp
   (use-package flycheck-irony
@@ -396,8 +372,7 @@ see also [[ruby]]
     :hook ((ruby-mode . yard-mode)
            (ruby-mode . eldoc-mode)))
 #+end_src
-** language server protocol
-** 
+** language server protocol 
 :properties:
 :custom_id: lsp-mode
 :end:
