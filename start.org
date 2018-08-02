@@ -91,6 +91,11 @@ This package lets us send commands to tmux, it's very handy
     :custom (org-src-fontify-natively t)
     :ensure org-plus-contrib)
 #+end_src
+*** ox-gfm
+This providese github flavored markdown export
+#+begin_src emacs-lisp
+(use-package ox-gfm)
+#+end_src
 *** ob-async
 This allows task execution in parrallel
 #+BEGIN_SRC emacs-lisp
@@ -396,6 +401,10 @@ This is for the language server protocol
     :hook (c++mode . lsp-ccls-enable))
 #+end_src
 * language support
+** asciidoc 
+#+begin_src emacs-lisp
+  (use-package adoc-mode)
+#+end_src
 ** markdown
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode)
@@ -546,4 +555,11 @@ org's templates are allcaps by default and I think this looks bad
       ("a" "#+ascii: ")
       ("i" "#+index: ?")
       ("i" "#+include: %file ?")))))
+#+end_src
+** Themes
+Here we set the emacs themes that we want to use
+I quite like the leuven theme since it provides really awesome org-mode support
+#+begin_src emacs-lisp
+  (custom-set-variables
+   '(custom-enabled-themes (quote (leuven))))
 #+end_src
