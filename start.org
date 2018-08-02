@@ -79,9 +79,11 @@ This package lets us send commands to tmux, it's very handy
     :chords (("``" . emamux:send-region)))
 #+END_SRC
 ** org
-   :properties:
-   :header-args: :tangle yes
-   :end:
+Org is org! it's great. We call use-package here and set it's
+~:ensure~ property to ~org-plus-contrib~ which causes both org and
+org-plus-contrib to get downloaded from the org mode repo, this way
+the version will be newer than whatever the current version of emacs
+has built in.
 #+begin_src emacs-lisp
   (use-package org
     :hook
@@ -91,10 +93,33 @@ This package lets us send commands to tmux, it's very handy
     :custom (org-src-fontify-natively t)
     :ensure org-plus-contrib)
 #+end_src
+*** org-projectile
+#+begin_src emacs-lisp
+(use-package org-projectile)
+#+end_src
+*** orgit
+
+orgit makes it so you can have org-mode links to magit stuff. So for example
+one could write down a revision hash and have it link to that object in magit,
+just link github does with issues
+#+begin_src emacs-lisp
+  (use-package orgit)
+#+end_src
+*** org-bullets
+This makes org show bullets as unicode characters
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :hook (org-mode . org-bullets-mode))
+#+end_src
+
 *** ox-gfm
 This providese github flavored markdown export
 #+begin_src emacs-lisp
 (use-package ox-gfm)
+#+end_src
+*** ob-rust
+#+begin_src emacs-lisp
+(use-package ob-rust)
 #+end_src
 *** ob-async
 This allows task execution in parrallel
@@ -377,28 +402,10 @@ see also [[ruby]]
     :hook ((ruby-mode . yard-mode)
            (ruby-mode . eldoc-mode)))
 #+end_src
-** language server protocol 
-:properties:
-:custom_id: lsp-mode
-:end:
-This is for the language server protocol
+** esup
+esup is the Emacs StartUp Profiler
 #+begin_src emacs-lisp
-  (use-package lsp-mode)
-#+end_src
-*** lsp-ui
-#+begin_src emacs-lisp
-  (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode))
-#+end_src
-*** lsp-python
-#+begin_src emacs-lisp
-  (use-package lsp-python
-    :hook (python-mode . lsp-python-enable))
-#+end_src
-*** lsp-ccls
-#+begin_src emacs-lisp
-  (use-package ccls
-    :hook (c++mode . lsp-ccls-enable))
+  (use-package esup)
 #+end_src
 * language support
 ** asciidoc 
@@ -422,6 +429,33 @@ This is for the language server protocol
 #+BEGIN_SRC emacs-lisp
 (use-package rpm-spec-mode)
 #+END_SRC
+** language server protocol 
+:properties:
+:custom_id: lsp-mode
+:end:
+This is for the language server protocol
+#+begin_src emacs-lisp
+  (use-package lsp-mode)
+#+end_src
+*** lsp-ui
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode))
+#+end_src
+*** lsp-python
+#+begin_src emacs-lisp
+  (use-package lsp-python
+    :hook (python-mode . lsp-python-enable))
+#+end_src
+*** lsp-rust 
+#+begin_src emacs-lisp
+  (use-package lsp-rust)
+#+end_src
+*** lsp-ccls
+#+begin_src emacs-lisp
+  (use-package ccls
+    :hook (c++mode . lsp-ccls-enable))
+#+end_src
 ** puppet
 #+begin_src emacs-lisp
   (use-package puppet-mode)
@@ -470,7 +504,6 @@ This is for the language server protocol
   (use-package racket-mode)
 #+end_src
 *** guile
-*** 
 #+BEGIN_SRC emacs-lisp
   (use-package paredit)
   (use-package geiser)
@@ -482,6 +515,10 @@ This is for the language server protocol
 ** D 
 #+begin_src emacs-lisp
   (use-package d-mode)
+#+end_src
+** rust
+#+begin_src emacs-lisp
+(use-package rust-mode)
 #+end_src
 ** dockerfiles
 #+BEGIN_SRC emacs-lisp
@@ -502,8 +539,9 @@ This is for the language server protocol
 Emacs maps many unicode blocks by default, but not all of them,
 we can use ~set-fontset-font~ to add fonts to the mapping.
 ** company fixed pitch font
-while I love variable pitched fonts company has trouble with them (the completions
-don't line up. Thus we are going to disable them in the company completion window.
+while I love variable pitched fonts company has trouble with them (the
+completions don't line up). Thus we are going to disable them in the
+company completion window.
 #+begin_src emacs-lisp
   (custom-set-faces
    '(company-tooltip ((t (:inherit fixed-pitch))))) 
