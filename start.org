@@ -402,6 +402,12 @@ see also [[ruby]]
     :hook ((ruby-mode . yard-mode)
            (ruby-mode . eldoc-mode)))
 #+end_src
+** popwin
+popwin fixes isues with random windows popping up and not going away
+#+begin_src emacs-lisp
+  (use-package popwin
+    :config (popwin-mode 1))
+#+end_src
 ** esup
 esup is the Emacs StartUp Profiler
 #+begin_src emacs-lisp
@@ -519,6 +525,11 @@ This is for the language server protocol
 ** rust
 #+begin_src emacs-lisp
 (use-package rust-mode)
+#+end_src
+** vala 
+#+begin_src emacs-lisp
+(use-package vala-mode)
+(use-package vala-snippets)
 #+end_src
 ** dockerfiles
 #+BEGIN_SRC emacs-lisp
