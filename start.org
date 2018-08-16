@@ -423,7 +423,7 @@ esup is the Emacs StartUp Profiler
 (use-package markdown-mode)
 #+END_SRC 
 ** c++
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package irony
     :hook
     (c++-mode . irony-mode)
@@ -453,14 +453,16 @@ This is for the language server protocol
   (use-package lsp-python
     :hook (python-mode . lsp-python-enable))
 #+end_src
+*** lsp-clangd 
+#+begin_src emacs-lisp
+  (use-package lsp-clangd
+    :hook ((c-mode . lsp-clangd-c-enable)
+           (c++-mode . lsp-clangd-c++-enable)
+           (objc-mode . lsp-clangd-objc-enable)))
+#+end_src
 *** lsp-rust 
 #+begin_src emacs-lisp
   (use-package lsp-rust)
-#+end_src
-*** lsp-ccls
-#+begin_src emacs-lisp
-  (use-package ccls
-    :hook (c++mode . lsp-ccls-enable))
 #+end_src
 ** puppet
 #+begin_src emacs-lisp
