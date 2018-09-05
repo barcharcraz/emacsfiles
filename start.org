@@ -233,6 +233,11 @@ this helps us with shells, and has specific support for [[fish]]
     :config
     (add-to-list 'company-backends 'company-lsp))
 #+end_src
+*** company-ansible
+#+begin_src emacs-lisp
+  (use-package company-ansible
+    :config (add-to-list 'company-backends 'company-ansible))
+#+end_src
 *** company flx
 #+begin_src emacs-lisp
   (use-package company-flx
@@ -532,6 +537,10 @@ This is for the language server protocol
 #+begin_src emacs-lisp
 (use-package vala-mode)
 (use-package vala-snippets)
+#+end_src
+** ansible
+#+begin_src emacs-lisp
+  (use-package ansible)
 #+end_src
 ** dockerfiles
 #+BEGIN_SRC emacs-lisp
