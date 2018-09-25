@@ -521,6 +521,10 @@ This is for the language server protocol
   (use-package paredit)
   (use-package geiser)
 #+END_SRC
+** perl6 
+#+begin_src emacs-lisp
+(use-package perl6-mode)
+#+end_src
 ** web-mode
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode)
