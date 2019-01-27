@@ -458,7 +458,6 @@ This is for the language server protocol
   (use-package lsp-python
     :hook (python-mode . lsp-python-enable))
 #+end_src
-*** lsp-clangd 
 #+begin_src emacs-lisp
   (use-package lsp-clangd
     :hook ((c-mode . lsp-clangd-c-enable)
