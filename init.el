@@ -1,10 +1,27 @@
-;;; init.el --- Where all the magic begins
-;;
-;; This file loads Org-mode and then loads the rest of our Emacs initialization from Emacs lisp
-;; embedded in literate Org-mode files.
+;;;; emacs init file
 
-(require 'org-install)
+;;; set global defaults
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
-(org-babel-load-file (expand-file-name "start.org" user-emacs-directory))
-(provide 'init)
-;;; init.el ends here
+
+(prefer-coding-system 'utf-8)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;;; set up package.el
+(setq package-enable-at-startup nil)
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("org" . "https://orgmode.org/elpa/") t)
+
+(use-package use-package
+  :ensure t)
