@@ -10,6 +10,8 @@
 
 (prefer-coding-system 'utf-8)
 
+(setq inhibit-splash-screen t)
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (when (file-exists-p custom-file)
@@ -23,5 +25,31 @@
 (add-to-list 'package-archives
              '("org" . "https://orgmode.org/elpa/") t)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (use-package use-package
+  :ensure t
+  :config
+  (setq use-package-always-defer t))
+
+;;; other
+
+(use-package magit
+  :ensure t
+  :defer t)
+
+;;; evil
+
+(use-package evil
+  :ensure t
+  :demand t
+  :config (evil-mode 1))
+
+;;; completion
+
+(use-package company
   :ensure t)
+
+
