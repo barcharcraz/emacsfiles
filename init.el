@@ -40,16 +40,50 @@
   :ensure t
   :defer t)
 
+(use-package tabbar
+  :ensure t
+  :demand t
+  :config (tabbar-mode))
+
+;(use-package which-key
+;  :ensure t
+;  :demand t
+;  :config (which-key-mode))
+
 ;;; evil
 
 (use-package evil
   :ensure t
+  :init (setq evil-want-keybinding nil)
   :demand t
   :config (evil-mode 1))
+
+(use-package evil-collection
+  :ensure t
+  :requires evil
+  :demand t
+  :config
+  (evil-collection-init))
 
 ;;; completion
 
 (use-package company
-  :ensure t)
+  :ensure t
+  :hook
+  (racket-mode . company-mode)
+  (emacs-lisp-mode . company-mode))
 
+;;; general programming
 
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :hook (racket-mode . rainbow-delimiters-mode))
+
+;;; specific language modes
+
+;;; racket
+
+(use-package racket-mode
+  :ensure t
+  :defer t)
