@@ -11,9 +11,9 @@
 (prefer-coding-system 'utf-8)
 
 (setq inhibit-splash-screen t)
-
+(add-hook 'completion-at-point-functions 'pcomplete-completions-at-point)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
+(setq backup-directory-alist '(("." . (expand-file-name "backups/" user-emacs-directory))))
 (when (file-exists-p custom-file)
   (load custom-file))
 
@@ -50,6 +50,10 @@
 ;  :demand t
 ;  :config (which-key-mode))
 
+(use-package general
+  :demand t
+  :ensure t)
+
 ;;; evil
 
 (use-package evil
@@ -69,6 +73,8 @@
 
 (use-package company
   :ensure t
+  :general
+  ("C-<SPC>" 'company-complete)
   :hook
   (racket-mode . company-mode)
   (emacs-lisp-mode . company-mode))
