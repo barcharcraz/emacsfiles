@@ -13,7 +13,7 @@
 (setq inhibit-splash-screen t)
 (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(setq backup-directory-alist '(("." . (expand-file-name "backups/" user-emacs-directory))))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (when (file-exists-p custom-file)
   (load custom-file))
 
@@ -91,5 +91,10 @@
 ;;; racket
 
 (use-package racket-mode
+  :ensure t
+  :defer t)
+
+;;; python
+(use-package elpy
   :ensure t
   :defer t)
