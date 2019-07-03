@@ -95,6 +95,11 @@
   :defer t)
 
 ;;; python
+
 (use-package elpy
+  :ensure t
+  :defer t)
+
+(use-package lsp-mode
   :ensure t
   :defer t)
