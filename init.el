@@ -10,6 +10,7 @@
 
 (prefer-coding-system 'utf-8)
 
+(setq exec-path (append '("c:/cygwin64/bin") exec-path))
 (setq inhibit-splash-screen t)
 (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -89,10 +90,18 @@
   :ensure t
   :defer t)
 
-(use-package projectile
+(use-package treemacs-projectile
   :ensure t
   :demand t
-  :config (projectile-mode))
+  :after projectile)
+
+(use-package projectile
+  :ensure t
+  :demand T
+  :config
+  (setq projectile-git-submodule-command "git submodule --quiet foreach \"echo -en $path\"\\\x0\"\"")
+  (setq projectile-indexing-method 'alien)
+  (projectile-mode))
 
 ;;; general programming
 
@@ -100,6 +109,14 @@
   :ensure t
   :defer t
   :hook (racket-mode . rainbow-delimiters-mode))
+
+;;; utils
+
+(use-package ag
+  :ensure t
+  :defer t
+  :config
+  (setq ag-executable (executable-find "ag")))
 
 ;;; specific language modes
 
