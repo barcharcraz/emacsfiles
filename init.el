@@ -69,6 +69,10 @@
   :config
   (evil-collection-init))
 
+(use-package treemacs-evil
+  :ensure t
+  :demand t
+  :after treemacs)
 ;;; completion
 
 (use-package company
@@ -78,6 +82,12 @@
   :hook
   (racket-mode . company-mode)
   (emacs-lisp-mode . company-mode))
+
+;;; interface
+
+(use-package treemacs
+  :ensure t
+  :defer t)
 
 ;;; general programming
 
@@ -101,5 +111,28 @@
   :defer t)
 
 (use-package lsp-mode
+  :ensure t
+  :defer t)
+
+
+;; cmake
+
+(use-package cmake-mode
+  :ensure t
+  :defer t)
+
+(use-package cmake-font-lock
+  :ensure t
+  :defer t
+  :after (cmake-mode))
+
+(use-package cmake-ide
+  :ensure t
+  :defer t
+  :after (cmake-mode rtags))
+
+;;; c++
+
+(use-package rtags
   :ensure t
   :defer t)
