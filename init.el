@@ -89,6 +89,11 @@
   :ensure t
   :defer t)
 
+(use-package projectile
+  :ensure t
+  :demand t
+  :config (projectile-mode))
+
 ;;; general programming
 
 (use-package rainbow-delimiters
@@ -136,3 +141,4 @@
 (use-package rtags
   :ensure t
   :defer t)
+
