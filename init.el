@@ -112,6 +112,10 @@
 
 ;;; utils
 
+(use-package esup
+  :ensure t
+  :defer t)
+
 (use-package ag
   :ensure t
   :defer t
@@ -136,7 +140,6 @@
   :ensure t
   :defer t)
 
-
 ;; cmake
 
 (use-package cmake-mode
@@ -155,7 +158,7 @@
 
 ;;; c++
 
-(use-package rtags
-  :ensure t
-  :defer t)
+;(use-package rtags
+;  :ensure t
+;  :defer t)
 
