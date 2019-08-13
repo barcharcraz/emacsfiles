@@ -12,12 +12,11 @@
 
 (setq exec-path (append '("c:/cygwin64/bin") exec-path))
 (setq inhibit-splash-screen t)
-(add-hook 'completion-at-point-functions 'pcomplete-completions-at-point)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (when (file-exists-p custom-file)
   (load custom-file))
-
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;;; set up package.el
 (setq package-enable-at-startup nil)
 (require 'package)
@@ -118,6 +117,13 @@
   :config
   (setq ag-executable (executable-find "ag")))
 
+
+(use-package editorconfig
+  :ensure t
+  :demand t
+  :config
+  (editorconfig-mode))
+
 ;;; specific language modes
 
 ;;; racket
@@ -152,6 +158,11 @@
   :ensure t
   :defer t
   :after (cmake-mode rtags))
+
+;;; json
+(use-package json-mode
+  :ensure t
+  :defer t)
 
 ;;; c++
 
