@@ -165,7 +165,16 @@
   :defer t)
 
 ;;; c++
+(use-package cc-mode
+  :config
+  (fset 'c-indent-region 'clang-format-region))
 
+(use-package clang-format
+  :ensure t
+  :defer t
+  :general
+  (:keymaps 'c-mode-base-map
+	    "C-i" 'clang-format))
 (use-package rtags
   :ensure t
   :defer t)
