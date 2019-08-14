@@ -14,6 +14,9 @@
 (setq inhibit-splash-screen t)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(add-hook 'org-mode-hook
+	  (lambda () (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)))
+				     
 (when (file-exists-p custom-file)
   (load custom-file))
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -54,6 +57,7 @@
   :demand t
   :ensure t)
 
+
 ;;; evil
 
 (use-package evil
@@ -87,7 +91,9 @@
 
 (use-package treemacs
   :ensure t
-  :defer t)
+  :defer t
+  :general
+  ("<f8>" 'treemacs))
 
 (use-package treemacs-projectile
   :ensure t
@@ -96,9 +102,9 @@
 
 (use-package projectile
   :ensure t
-  :demand T
+  :demand t
   :config
-  (setq projectile-git-submodule-command "git submodule --quiet foreach \"echo -en $path\"\\\x0\"\"")
+  ;(setq projectile-git-submodule-command "git submodule --quiet foreach \"echo -en $path\"\\\x0\"\"")
   (setq projectile-indexing-method 'alien)
   (projectile-mode))
 
@@ -108,6 +114,19 @@
   :ensure t
   :defer t
   :hook (racket-mode . rainbow-delimiters-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :defer t)
+
+(use-package yasnippet
+  :ensure t
+  :defer t)
+
+(use-package flycheck
+  :ensure t
+  :defer t)
+
 
 ;;; utils
 
@@ -135,10 +154,6 @@
 ;;; python
 
 (use-package elpy
-  :ensure t
-  :defer t)
-
-(use-package lsp-mode
   :ensure t
   :defer t)
 
