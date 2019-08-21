@@ -19,7 +19,7 @@
 				     
 (when (file-exists-p custom-file)
   (load custom-file))
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 ;;; set up package.el
 (setq package-enable-at-startup nil)
 (require 'package)
@@ -184,10 +184,6 @@
   :defer t)
 
 ;;; c++
-(use-package cc-mode
-  :config
-  (fset 'c-indent-region 'clang-format-region))
-
 (use-package clang-format
   :ensure t
   :defer t
