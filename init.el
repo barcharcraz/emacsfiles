@@ -83,9 +83,8 @@
   :ensure t
   :general
   ("C-<SPC>" 'company-complete)
-  :hook
-  (racket-mode . company-mode)
-  (emacs-lisp-mode . company-mode))
+  :config
+  (global-company-mode))
 
 ;;; interface
 
@@ -189,7 +188,7 @@
   :defer t
   :general
   (:keymaps 'c-mode-base-map
-	    "C-i" 'clang-format))
+	    "C-<tab>" 'clang-format-region))
 (use-package rtags
   :ensure t
   :defer t)
