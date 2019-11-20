@@ -193,3 +193,8 @@
   :ensure t
   :defer t)
 
+;;; ASM
+
+(use-package disaster
+  :ensure t
+  :defer t)
