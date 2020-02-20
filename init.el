@@ -48,15 +48,9 @@
   :demand t
   :config (tabbar-mode))
 
-;(use-package which-key
-;  :ensure t
-;  :demand t
-;  :config (which-key-mode))
-
 (use-package general
   :demand t
   :ensure t)
-
 
 ;;; evil
 
@@ -103,7 +97,6 @@
   :ensure t
   :demand t
   :config
-  ;(setq projectile-git-submodule-command "git submodule --quiet foreach \"echo -en $path\"\\\x0\"\"")
   (setq projectile-indexing-method 'alien)
   (projectile-mode))
 
