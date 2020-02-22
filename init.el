@@ -28,6 +28,10 @@
 (add-to-list 'package-archives
              '("org" . "https://orgmode.org/elpa/") t)
 
+;; support for c++ module like files
+(add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ixx\\'" . c++-mode))
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -186,8 +190,19 @@
   :ensure t
   :defer t)
 
+;;; nim
+
+(use-package nim-mode
+  :ensure t
+  :defer t)
+
 ;;; ASM
 
 (use-package disaster
+  :ensure t
+  :defer t)
+;;; YAML
+
+(use-package yaml-mode
   :ensure t
   :defer t)
