@@ -115,6 +115,10 @@
   :ensure t
   :defer t)
 
+(use-package lsp-ui
+  :ensure t
+  :defer t)
+
 (use-package yasnippet
   :ensure t
   :defer t)
